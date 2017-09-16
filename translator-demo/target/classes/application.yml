@@ -1,0 +1,7 @@
+translator:
+  key: <Google API>
+  to: es
+  from: en
+  enabled: false
+debug: true
+
