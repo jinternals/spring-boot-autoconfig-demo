@@ -1,0 +1,10 @@
+server:
+  port: 0
+
+translator:
+  key: <Google API Test Key>
+  enabled: true
+
+debug: true
+
+

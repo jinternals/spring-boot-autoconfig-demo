@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -23,9 +22,10 @@ public class TranslatorAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    @Conditional(OnTranslatorConfigCondition.class)
+    //@Conditional(TranslatorConfigurationCondition.class)
+    @ConditionalOnTranslatorEnabledConfigProperty
     public Translator getTranslator() {
-        return new Translator( TranslateOptions.newBuilder().setApiKey(configuration.getKey()).build().getService(), configuration.getFrom(), configuration.getTo());
+        return new Translator( TranslateOptions.newBuilder().setApiKey(configuration.getKey()).build().getService());
     }
 
 }

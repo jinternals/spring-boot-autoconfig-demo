@@ -64,7 +64,7 @@ public class TranslatorAutoConfigurationTest {
     static class CustomTranslatorAutoConfiguration {
         @Bean
         public Translator loggerInjectorBeanPostProcessor() {
-            return new Translator(null, null, null);
+            return new Translator(null);
         }
     }
 

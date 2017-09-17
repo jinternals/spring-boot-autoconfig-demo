@@ -15,20 +15,20 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
-    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-        return args -> {
-
-            try {
-                Translator translator = ctx.getBean(Translator.class);
-                String text = translator.translate("Hello");
-                System.out.println(text);
-            } catch (NoSuchBeanDefinitionException e) {
-                System.err.println("No bean of type Translator found.");
-            }
-
-
-        };
-    }
+//    @Bean
+//    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+//        return args -> {
+//
+//            try {
+//                Translator translator = ctx.getBean(Translator.class);
+//                String text = translator.translate("Hello","en","es");
+//                System.out.println(text);
+//            } catch (NoSuchBeanDefinitionException e) {
+//                System.err.println("No bean of type Translator found.");
+//            }
+//
+//
+//        };
+//    }
 
 }

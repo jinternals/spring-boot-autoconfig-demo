@@ -7,19 +7,23 @@ import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
-public class OnTranslatorConfigCondition extends SpringBootCondition {
+import static java.lang.String.format;
+import static org.springframework.boot.autoconfigure.condition.ConditionOutcome.match;
+import static org.springframework.boot.autoconfigure.condition.ConditionOutcome.noMatch;
+
+class TranslatorConfigurationCondition extends SpringBootCondition {
     @Override
     public ConditionOutcome getMatchOutcome(ConditionContext context, AnnotatedTypeMetadata metadata) {
 
         RelaxedPropertyResolver resolver = new RelaxedPropertyResolver(context.getEnvironment(), "translator.");
-        ConditionMessage.Builder condition = ConditionMessage.forCondition("Translator");
+        ConditionMessage.Builder condition = ConditionMessage.forCondition(ConditionalOnTranslatorEnabledConfigProperty.class);
 
         TranslatorConfiguration translatorConfiguration = new TranslatorConfiguration();
-
-        if (resolver.getProperty("enabled", Boolean.class,translatorConfiguration.isEnabled())) {
-            return ConditionOutcome.match();
+        Boolean value = resolver.getProperty("enabled", Boolean.class, translatorConfiguration.isEnabled());
+        if (value) {
+            return match(condition.available(format("translator.enable : %s", value)));
         }
-        return ConditionOutcome.noMatch(condition.because("is not enabled"));
+        return noMatch(condition.because(format("translator.enable : %s", value)));
 
     }
 

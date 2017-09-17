@@ -10,19 +10,15 @@ import static com.google.cloud.translate.Translate.TranslateOption.targetLanguag
 
 public class Translator {
 
-    private String from;
-    private String to;
     Translate translate;
 
 
-    public Translator(Translate translate,String from, String to){
-        this.from = from;
-        this.to = to;
+    public Translator(Translate translate){
         this.translate = translate;
     }
 
 
-    public String translate(String text){
+    public String translate(String text,String from, String to){
 
         Translation translation =
                 translate.translate(
@@ -30,15 +26,6 @@ public class Translator {
                         sourceLanguage(from),
                         targetLanguage(to));
         return translation.getTranslatedText();
-    }
-
-
-    public String getTo() {
-        return to;
-    }
-
-    public String getFrom() {
-        return from;
     }
 
     public Translate getTranslate() {

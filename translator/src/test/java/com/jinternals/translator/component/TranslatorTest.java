@@ -31,14 +31,14 @@ public class TranslatorTest {
 
     @Before
     public void setup() {
-        translator = new Translator(translate, FROM, TO);
+        translator = new Translator(translate);
     }
 
     @Test
     public void shouldTranslate() {
         Mockito.when(translate.translate(any(String.class), any(),any())).thenReturn(translation);
         Mockito.when(translation.getTranslatedText()).thenReturn(HOLA);
-        String hola = translator.translate("Hello");
+        String hola = translator.translate("Hello",FROM,TO);
         assertEquals(HOLA,hola);
     }
 

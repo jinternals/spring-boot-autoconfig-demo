@@ -1,7 +1,8 @@
+server:
+  port: 8080
+
+
 translator:
   key: <Google API>
-  to: es
-  from: en
-  enabled: false
-debug: true
+  enabled: true
 

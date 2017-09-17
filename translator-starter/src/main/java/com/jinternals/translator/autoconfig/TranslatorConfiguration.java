@@ -6,38 +6,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class TranslatorConfiguration {
 
     /**
-     * Source language.
-     */
-    private String from ;
-
-    /**
-     * Target language.
-     */
-    private String to ;
-
-    /**
      * Key for google translate api.
      */
     private String key;
 
-
+    /**
+     * enabled or disable translator.
+     */
     private boolean enabled = true;
-
-    public String getFrom() {
-        return from;
-    }
-
-    public String getTo() {
-        return to;
-    }
-
-    public void setFrom(String from) {
-        this.from = from;
-    }
-
-    public void setTo(String to) {
-        this.to = to;
-    }
 
     public String getKey() {
         return key;
